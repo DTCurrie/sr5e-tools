@@ -48,5 +48,10 @@
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.43.0",
     "webpack-env": "^0.8.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
