@@ -3,10 +3,10 @@
     <div class="container">
       <h1>SR5e Run Generator</h1>
       <div class="row">
-        <h2>{{ title }}</h2>
+        <!-- TODO: <h2>{{ title }}</h2> -->
         <div class="rg-app__run col fade" v-bind:class="[show && 'show']">
           <p>
-            The runners go to a meet
+            The runners agree to meet
             <strong>{{ meetLocation }}</strong>
             for their next job. They are hired by
             <strong>{{ employers }}</strong>
@@ -36,177 +36,157 @@ import Vue from "vue";
 
 import { rollDice } from "game-mechanics";
 
-type RollResult = [string, number];
+import {
+  barName,
+  commercialLocation,
+  movingVehicle,
+  urbanHellHole,
+} from "@/utils/meet-locations";
 
-const getMeetLocation = (): RollResult => {
+const getMeetLocation = (): string => {
   const roll = rollDice();
 
   switch (roll) {
     case 1:
-      return ["At a bar, club, or restaurant", roll];
+      return `at the ${barName()}`;
     case 2:
-      return [
-        "At a warehouse, loading dock, or other underused location",
-        roll
-      ];
+      return `at a ${commercialLocation().toLowerCase()}`;
     case 3:
-      return ["In the barrens district or some other urban hell hole", roll];
+      return `in the ${urbanHellHole()}`;
     case 4:
-      return ["In a moving vehicle", roll];
+      return `while ${movingVehicle()}`;
     case 5:
-      return ["In a Matrix host", roll];
+      return "In a Matrix host";
     case 6:
-      return ["In Astral space", roll];
+      return "In Astral space";
     default:
       throw new Error("Roll out of bounds");
   }
 };
 
-const getEmployers = (): RollResult => {
+const getEmployers = (): string => {
   const roll = rollDice() + rollDice();
 
   switch (roll) {
     case 2:
-      return ["A secret society", roll];
+      return "A secret society";
     case 3:
-      return ["A political or activist group", roll];
+      return "A political or activist group";
     case 4:
-      return ["A government or government agency", roll];
+      return "A government or government agency";
     case 5:
     case 6:
-      return ["A minor corporation", roll];
+      return "A minor corporation";
     case 7:
     case 8:
-      return ["A megacorporation", roll];
+      return "A megacorporation";
     case 9:
-      return ["A criminal syndicate", roll];
+      return "A criminal syndicate";
     case 10:
-      return ["A magical group", roll];
+      return "A magical group";
     case 11:
-      return ["A private individual", roll];
+      return "A private individual";
     case 12:
-      return ["An exotic or mysterious being", roll];
+      return "An exotic or mysterious being";
     default:
       throw new Error("Roll out of bounds");
   }
 };
 
-const getJob = (): RollResult => {
+const getJob = (): string => {
   const roll = rollDice();
 
   switch (roll) {
     case 1:
-      return ["A data steal", roll];
+      return "A data steal";
     case 2:
-      return ["An assassination or demolition", roll];
+      return "An assassination or demolition";
     case 3:
-      return ["An extraction or insertion", roll];
+      return "An extraction or insertion";
     case 4:
-      return ["A misdirection", roll];
+      return "A misdirection";
     case 5:
-      return ["A protection", roll];
+      return "A protection";
     case 6:
-      return ["A delivery", roll];
+      return "A delivery";
     default:
       throw new Error("Roll out of bounds");
   }
 };
 
-const getMacguffin = (): RollResult => {
+const getMacguffin = (): string => {
   const roll = rollDice();
 
   switch (roll) {
     case 1:
-      return ["A key employee", roll];
+      return "A key employee";
     case 2:
-      return ["A prototype product", roll];
+      return "A prototype product";
     case 3:
-      return ["Cutting edge technology research]", roll];
+      return "Cutting edge technology research]";
     case 4:
-      return ["A bioengineered life form", roll];
+      return "A bioengineered life form";
     case 5:
-      return ["A Magical object", roll];
+      return "A Magical object";
     case 6:
-      return [
-        "An urban building, rural location, or infrastructure object",
-        roll
-      ];
+      return "An urban building, rural location, or infrastructure object";
     default:
       throw new Error("Roll out of bounds");
   }
 };
 
-const getTwist = (): RollResult => {
+const getTwist = (): string => {
   const roll = rollDice();
 
   switch (roll) {
     case 1:
-      return ["Security is unexpectedly high", roll];
+      return "Security is unexpectedly high";
     case 2:
-      return ["A third party is also interested", roll];
+      return "A third party is also interested";
     case 3:
-      return [
-        "The target is not what it appears to be (group was lied to)",
-        roll
-      ];
+      return "The target is not what it appears to be (group was lied to)";
     case 4:
-      return ["The job requires a rare piece of equipment", roll];
+      return "The job requires a rare piece of equipment";
     case 5:
-      return ["Target has been moved or is being moved", roll];
+      return "Target has been moved or is being moved";
     case 6:
-      return ["The employer decides to double-cross them", roll];
+      return "The employer decides to double-cross them";
     default:
       throw new Error("Roll out of bounds");
   }
 };
-
-const printResult = ([text, roll]: RollResult) => `${text} (${roll})`;
 
 export default Vue.extend({
   name: "RunGenerator",
-  data: function() {
+  data: function () {
     return {
-      meetLocation: printResult(getMeetLocation()),
-      employers: printResult(getEmployers()),
-      job: printResult(getJob()),
-      macguffin: printResult(getMacguffin()),
-      twist: printResult(getTwist()),
-      show: false
+      meetLocation: getMeetLocation(),
+      employers: getEmployers(),
+      job: getJob(),
+      macguffin: getMacguffin(),
+      twist: getTwist(),
+      show: false,
     };
   },
-  mounted: function() {
+  mounted: function () {
     setTimeout(() => {
       this.show = true;
     }, 500);
   },
   methods: {
-    getRun: function() {
+    getRun: function () {
       this.show = false;
 
       setTimeout(() => {
-        this.meetLocation = printResult(getMeetLocation());
-        this.employers = printResult(getEmployers());
-        this.job = printResult(getJob());
-        this.macguffin = printResult(getMacguffin());
-        this.twist = printResult(getTwist());
+        this.meetLocation = getMeetLocation();
+        this.employers = getEmployers();
+        this.job = getJob();
+        this.macguffin = getMacguffin();
+        this.twist = getTwist();
 
         this.show = true;
       }, 500);
-    }
-  }
+    },
+  },
 });
 </script>
-
-<style lang="scss">
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap/scss/root";
-@import "~bootstrap/scss/reboot";
-@import "~bootstrap/scss/type";
-@import "~bootstrap/scss/grid";
-@import "~bootstrap/scss/buttons";
-@import "~bootstrap/scss/transitions";
-@import "~bootstrap/scss/utilities";
-@import "~bootstrap/scss/print";
-</style>
