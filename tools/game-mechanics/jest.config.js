@@ -14,7 +14,7 @@ module.exports = {
       statements: 95,
     },
   },
-  collectCoverageFrom: ['src/*.ts'],
+  collectCoverageFrom: ['src/**/*.ts'],
   globals: {
     'ts-jest': {
       packageJson: 'package.json',

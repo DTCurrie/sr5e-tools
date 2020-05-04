@@ -34,17 +34,18 @@
 <script lang="ts">
 import Vue from "vue";
 
-import { rollDice } from "game-mechanics";
+import { createDicePool } from "game-mechanics";
 
 import {
   barName,
   commercialLocation,
+  matrixHostName,
   movingVehicle,
   urbanHellHole,
 } from "@/utils/meet-locations";
 
 const getMeetLocation = (): string => {
-  const roll = rollDice();
+  const roll = createDicePool().roll();
 
   switch (roll) {
     case 1:
@@ -56,16 +57,16 @@ const getMeetLocation = (): string => {
     case 4:
       return `while ${movingVehicle()}`;
     case 5:
-      return "In a Matrix host";
+      return `in the ${matrixHostName()} matrix host`;
     case 6:
-      return "In Astral space";
+      return "in the Astral Plane";
     default:
       throw new Error("Roll out of bounds");
   }
 };
 
 const getEmployers = (): string => {
-  const roll = rollDice() + rollDice();
+  const roll = createDicePool({ count: 2 }).roll();
 
   switch (roll) {
     case 2:
@@ -94,7 +95,7 @@ const getEmployers = (): string => {
 };
 
 const getJob = (): string => {
-  const roll = rollDice();
+  const roll = createDicePool().roll();
 
   switch (roll) {
     case 1:
@@ -115,7 +116,7 @@ const getJob = (): string => {
 };
 
 const getMacguffin = (): string => {
-  const roll = rollDice();
+  const roll = createDicePool().roll();
 
   switch (roll) {
     case 1:
@@ -136,7 +137,7 @@ const getMacguffin = (): string => {
 };
 
 const getTwist = (): string => {
-  const roll = rollDice();
+  const roll = createDicePool().roll();
 
   switch (roll) {
     case 1:

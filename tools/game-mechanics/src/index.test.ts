@@ -1,9 +1,9 @@
-import { rollDice } from './index';
+import { createDicePool } from './index';
 
 describe('index', () => {
-  describe('dice export', () => {
-    it('should export rollDice', () => {
-      expect(rollDice).toBeDefined();
+  describe('dice/dice export', () => {
+    it('should export createDicePool', () => {
+      expect(createDicePool).toBeDefined();
     });
   });
 });
