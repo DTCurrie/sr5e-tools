@@ -1,11 +1,5 @@
 'use strict';
 
 module.exports = {
-  hooks: {
-    readPackage,
-  },
+  hooks: {},
 };
-
-function readPackage(packageJson, context) {
-  return packageJson;
-}

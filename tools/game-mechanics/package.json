@@ -1,0 +1,50 @@
+{
+  "name": "game-mechanics",
+  "version": "1.0.0",
+  "description": "A set of tools to cover replicating game mechanics",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "browser": "dist/index.bundle.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "rollup -c rollup.config.ts -w",
+    "build": "run-s build:*",
+    "build:clean": "rimraf dist",
+    "build:lint": "npm run lint",
+    "build:test": "jest --coverage --no-cache",
+    "build:compile": "rollup -c rollup.config.ts && tsc --declaration --emitDeclarationOnly --declarationDir dist",
+    "lint": "eslint --ext .ts src/",
+    "test": "jest --coverage --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DTCurrie/sr5e-tools/tools/game-mechanics"
+  },
+  "author": "Devin T. Currie",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "@rollup/plugin-node-resolve": "^7.1.3",
+    "@rollup/plugin-typescript": "^4.1.1",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.4",
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "husky": "^4.2.5",
+    "jest": "^25.5.4",
+    "lint-staged": "^10.2.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.7.6",
+    "ts-jest": "^25.4.0",
+    "tslib": "^1.11.1",
+    "typescript": "~3.8.3"
+  }
+}

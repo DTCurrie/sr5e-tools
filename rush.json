@@ -40,6 +40,12 @@
       "projectFolder": "apps/run-generator",
       "reviewCategory": "production",
       "cyclicDependencyProjects": []
+    },
+    {
+      "packageName": "game-mechanics",
+      "projectFolder": "tools/game-mechanics",
+      "reviewCategory": "tools",
+      "cyclicDependencyProjects": []
     }
   ]
 }
