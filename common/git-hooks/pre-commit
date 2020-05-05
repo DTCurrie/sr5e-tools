@@ -5,11 +5,7 @@
 
 REVISION=$(git log --pretty=format:'%h' -n 1)
 FILE_LIST=$(git diff --diff-filter=d --cached --name-only | grep -E '\.(js|jsx|ts|tsx|vue)$')
-
 FILE_COUNT=${#FILE_LIST[@]}
-
-echo "$FILE_COUNT"
-
 FILE_STRING='file'
 
 if [ "$FILE_COUNT" -gt 1 ]; then
@@ -30,19 +26,9 @@ echo Running ESLint
 
 if [ -f $ESLINT ]; then
     echo "🔍 Finding changed files since ${BOLD}git${NORMAL} revision ${BOLD}$REVISION${NORMAL}."
-    echo $FILE_COUNT
-
     echo "🎯 Found ${BOLD}${FILE_COUNT}${NORMAL} changed $FILE_STRING."
 
     if [ "$FILE_COUNT" -gt 0 ]; then
-        echo $FILE_LIST
-        
-        echo 'first'
-        echo $FILE_LIST[*]
-
-        echo 'second'
-        echo ${FILE_LIST[*]}
-
         $ESLINT ${FILE_LIST[*]} "$@"
     fi
 
