@@ -3,24 +3,28 @@
 # exit with non-zero status after issuing an appropriate message if
 # it wants to stop the commit.
 
-ESLINT=`common/temp/node_modules/.bin/eslint "{apps,tools}/src/**/*.{js,jsx,ts,tsx,vue}" --cache --fix`
+ESLINT=common/temp/node_modules/.bin/eslint
 PRETTIER=common/temp/node_modules/.bin/pretty-quick
+
+APPS_RUN_GENERATOR=apps/run-generator/src/**/*.{ts,vue}
+
+TOOLS_GAME_MECHANICS=tools/game-mechanics
 
 echo --------------------------------------------
 echo Starting Git hook: pre-commit
 
 if [ -f $ESLINT ]; then
-  echo Invoking $ESLINT
-  $ESLINT
+  echo Invoking $ESLINT on $APPS_RUN_GENERATOR
+  echo `$ESLINT "${APPS_RUN_GENERATOR}" --cache --fix`
 else
-  echo ESLINT not installed: $ESLINT
+  echo Error running ESLINT: $ESLINT
 fi
 
 if [ -f $PRETTIER ]; then
   echo Invoking $PRETTIER
   $PRETTIER
 else
-  echo PRETTIER not installed: $PRETTIER
+  echo Error running PRETTIER: $PRETTIER
 fi
 
 echo Finished Git hook: pre-commit
