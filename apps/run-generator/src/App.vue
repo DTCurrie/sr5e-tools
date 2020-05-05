@@ -34,7 +34,7 @@
 <script lang="ts">
 import Vue from "vue";
 
-import { createDicePool } from "game-mechanics";
+import { createDicePool } from "@sr5e-tools/game-mechanics";
 
 import {
   barName,

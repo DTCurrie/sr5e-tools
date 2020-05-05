@@ -36,15 +36,17 @@
 
   "projects": [
     {
-      "packageName": "run-generator",
+      "packageName": "@sr5e-tools/run-generator",
       "projectFolder": "apps/run-generator",
       "reviewCategory": "production",
+      "shouldPublish": true,
       "cyclicDependencyProjects": []
     },
     {
-      "packageName": "game-mechanics",
+      "packageName": "@sr5e-tools/game-mechanics",
       "projectFolder": "tools/game-mechanics",
       "reviewCategory": "tools",
+      "shouldPublish": true,
       "cyclicDependencyProjects": []
     }
   ]

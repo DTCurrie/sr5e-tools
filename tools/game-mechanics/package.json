@@ -1,6 +1,6 @@
 {
-  "name": "game-mechanics",
-  "version": "1.0.0",
+  "name": "@sr5e-tools/game-mechanics",
+  "version": "0.1.0",
   "description": "A set of tools to cover replicating game mechanics",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

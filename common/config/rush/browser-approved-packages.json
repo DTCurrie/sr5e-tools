@@ -31,6 +31,10 @@
       "allowedCategories": [ "tools" ]
     },
     {
+      "name": "@sr5e-tools/game-mechanics",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@testing-library/dom",
       "allowedCategories": [ "production" ]
     },
