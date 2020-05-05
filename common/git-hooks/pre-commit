@@ -7,8 +7,7 @@ ESLINT=common/temp/node_modules/.bin/eslint
 PRETTIER=common/temp/node_modules/.bin/pretty-quick
 
 APPS_RUN_GENERATOR=apps/run-generator/src/**/*.{ts,vue}
-
-TOOLS_GAME_MECHANICS=tools/game-mechanics
+TOOLS_GAME_MECHANICS=tools/game-mechanics/src/**/*.ts
 
 echo --------------------------------------------
 echo Starting Git hook: pre-commit
@@ -16,6 +15,9 @@ echo Starting Git hook: pre-commit
 if [ -f $ESLINT ]; then
   echo Invoking $ESLINT on $APPS_RUN_GENERATOR
   echo `$ESLINT "$APPS_RUN_GENERATOR" --cache --fix`
+
+  echo Invoking $ESLINT on $TOOLS_GAME_MECHANICS
+  echo `$ESLINT "$TOOLS_GAME_MECHANICS" --cache --fix`
 else
   echo Error running ESLINT: $ESLINT
 fi
