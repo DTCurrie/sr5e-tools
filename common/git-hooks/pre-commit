@@ -31,14 +31,6 @@ echo --------------------------------------------
 echo Starting Git hook: pre-commit
 echo --------------------------------------------
 
-echo Running Prettier
-
-if [ -f $PRETTIER ]; then
-  $PRETTIER
-else
-  echo "\nError running PRETTIER: $PRETTIER\n"
-fi
-
 echo Running ESLint
 
 if [ -f $ESLINT ]; then
@@ -46,7 +38,7 @@ if [ -f $ESLINT ]; then
     echo "🎯 Found ${BOLD}${FILE_COUNT}${NORMAL} changed $FILE_STRING."
 
     if [ "$FILE_COUNT" -gt 0 ]; then
-        $ESLINT ${FILE_LIST[*]} "$@"
+        `$ESLINT ${FILE_LIST[*]} "$@" --fix`
     fi
 
     if [ $? -ne 0 ]; then
@@ -56,6 +48,14 @@ if [ -f $ESLINT ]; then
     fi
 else
   echo "\nError running ESLINT: $ESLINT\n"
+fi
+
+echo Running Prettier
+
+if [ -f $PRETTIER ]; then
+  $PRETTIER
+else
+  echo "\nError running PRETTIER: $PRETTIER\n"
 fi
 
 # if [ -f $ESLINT ]; then
