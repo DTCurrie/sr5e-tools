@@ -7,7 +7,7 @@ REVISION=$(git log --pretty=format:'%h' -n 1)
 FILE_LIST=$(git diff --diff-filter=d --cached --name-only | grep -E '\.(js|jsx|ts|tsx|vue)$')
 FILE_COUNT=0
 
-if [ ${#FILE_LIST} -gt 0]; then
+if [ ${#FILE_LIST} -gt 0 ]; then
     echo "FILE_LIST NOT EMPTY"
     FILE_COUNT=${#FILE_LIST[@]}
 fi
