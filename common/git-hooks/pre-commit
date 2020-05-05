@@ -31,7 +31,7 @@ echo --------------------------------------------
 echo Starting Git hook: pre-commit
 echo --------------------------------------------
 
-echo Running ESLint
+echo "\nRunning ESLint\n"
 
 if [ -f $ESLINT ]; then
     echo "🔍 Finding changed files since ${BOLD}git${NORMAL} revision ${BOLD}$REVISION${NORMAL}."
@@ -47,26 +47,16 @@ if [ -f $ESLINT ]; then
         echo "✅  Everything is awesome!"
     fi
 else
-  echo "\nError running ESLINT: $ESLINT\n"
+  echo "\nError running ESLint: $ESLINT\n"
 fi
 
-echo Running Prettier
+echo "\nRunning Prettier\n"
 
 if [ -f $PRETTIER ]; then
   $PRETTIER
 else
-  echo "\nError running PRETTIER: $PRETTIER\n"
+  echo "\nError running Prettier: $PRETTIER\n"
 fi
-
-# if [ -f $ESLINT ]; then
-#   echo Invoking $ESLINT on $APPS_RUN_GENERATOR
-#   echo `$ESLINT "$APPS_RUN_GENERATOR" --cache --fix`
-
-#   echo Invoking $ESLINT on $TOOLS_GAME_MECHANICS
-#   echo `$ESLINT "$TOOLS_GAME_MECHANICS" --cache --fix`
-# else
-#   echo Error running ESLINT: $ESLINT
-# fi
 
 echo --------------------------------------------
 echo Finished Git hook: pre-commit
