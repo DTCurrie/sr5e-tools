@@ -3,6 +3,8 @@
 # exit with non-zero status after issuing an appropriate message if
 # it wants to stop the commit.
 
+FILELIST=`git diff --diff-filter=d --cached --name-only | grep -E '\.(js|jsx|ts|tsx|vue)$'`
+
 ESLINT=common/temp/node_modules/.bin/eslint
 PRETTIER=common/temp/node_modules/.bin/pretty-quick
 
@@ -12,15 +14,29 @@ TOOLS_GAME_MECHANICS=tools/game-mechanics/src/**/*.ts
 echo --------------------------------------------
 echo Starting Git hook: pre-commit
 
-if [ -f $ESLINT ]; then
-  echo Invoking $ESLINT on $APPS_RUN_GENERATOR
-  echo `$ESLINT "$APPS_RUN_GENERATOR" --cache --fix`
+echo ESLINT
 
-  echo Invoking $ESLINT on $TOOLS_GAME_MECHANICS
-  echo `$ESLINT "$TOOLS_GAME_MECHANICS" --cache --fix`
-else
-  echo Error running ESLINT: $ESLINT
+if [ ${#fileList} -lt 1 ]; then
+    echo -e "You have no staged files to lint\n"
+    exit
 fi
+
+echo -e `$ESLINT ${fileList[*]} "$@"`
+
+if [ $? -ne 0 ]; then
+    echo -e "\nPlease fix the above linting issues before committing.\n"
+    exit 1
+fi
+
+# if [ -f $ESLINT ]; then
+#   echo Invoking $ESLINT on $APPS_RUN_GENERATOR
+#   echo `$ESLINT "$APPS_RUN_GENERATOR" --cache --fix`
+
+#   echo Invoking $ESLINT on $TOOLS_GAME_MECHANICS
+#   echo `$ESLINT "$TOOLS_GAME_MECHANICS" --cache --fix`
+# else
+#   echo Error running ESLINT: $ESLINT
+# fi
 
 if [ -f $PRETTIER ]; then
   echo Invoking $PRETTIER
