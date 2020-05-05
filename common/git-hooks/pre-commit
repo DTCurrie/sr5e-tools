@@ -6,7 +6,7 @@
 REVISION=$(git log --pretty=format:'%h' -n 1)
 FILE_LIST=$(git diff --diff-filter=d --cached --name-only | grep -E '\.(js|jsx|ts|tsx|vue)$')
 
-FILE_COUNT=${#FILE_LIST}
+FILE_COUNT=${#FILE_LIST[@]}
 
 echo "$FILE_COUNT"
 
