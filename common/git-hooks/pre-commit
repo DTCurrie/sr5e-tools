@@ -3,7 +3,7 @@
 # exit with non-zero status after issuing an appropriate message if
 # it wants to stop the commit.
 
-ESLINT=`common/temp/node_modules/.bin/eslint --cache`
+ESLINT=`common/temp/node_modules/.bin/eslint "{apps,tools}/src/**/*.{js,jsx,ts,tsx,vue}" --cache --fix`
 PRETTIER=common/temp/node_modules/.bin/pretty-quick
 
 echo --------------------------------------------
