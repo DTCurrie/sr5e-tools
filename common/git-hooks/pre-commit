@@ -15,7 +15,7 @@ echo Starting Git hook: pre-commit
 
 if [ -f $ESLINT ]; then
   echo Invoking $ESLINT on $APPS_RUN_GENERATOR
-  echo `$ESLINT "${APPS_RUN_GENERATOR}" --cache --fix`
+  echo `$ESLINT "$APPS_RUN_GENERATOR" --cache --fix`
 else
   echo Error running ESLINT: $ESLINT
 fi

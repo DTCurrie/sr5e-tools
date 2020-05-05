@@ -36,13 +36,15 @@ import Vue from "vue";
 
 import { createDicePool } from "@sr5e-tools/game-mechanics";
 
+import { policlub, secretSociety } from "./utils/employers";
+
 import {
   barName,
   commercialLocation,
   matrixHostName,
   movingVehicle,
   urbanHellHole,
-} from "@/utils/meet-locations";
+} from "./utils/meet-locations";
 
 const getMeetLocation = (): string => {
   const roll = createDicePool().roll();
@@ -70,9 +72,9 @@ const getEmployers = (): string => {
 
   switch (roll) {
     case 2:
-      return "A secret society";
+      return `the ${secretSociety()}`;
     case 3:
-      return "A political or activist group";
+      return `the ${policlub()}`;
     case 4:
       return "A government or government agency";
     case 5:

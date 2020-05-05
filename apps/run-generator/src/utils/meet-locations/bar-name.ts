@@ -1,3 +1,5 @@
+import { randomValue } from "@/utils/random-value";
+
 const descriptors = [
   "Arctic",
   "Big",
@@ -213,43 +215,10 @@ const businesses = [
   "Ale House",
 ];
 
-const descriptorIncrement = 1 / descriptors.length;
-const subjectIncrement = 1 / subjects.length;
-const businessIncrement = 1 / businesses.length;
-
-const descriptorValues = Array.from(
-  { length: descriptors.length },
-  (_v, i) => i * descriptorIncrement
-);
-
-const subjectValues = Array.from(
-  { length: subjects.length },
-  (_v, i) => i * subjectIncrement
-);
-
-const businessValues = Array.from(
-  { length: businesses.length },
-  (_v, i) => i * businessIncrement
-);
-
 export const barName = () => {
-  const descriptorThreshold = Math.random();
-  const subjectThreshold = Math.random();
-  const businessThreshold = Math.random();
+  const descriptor = randomValue(descriptors);
+  const subject = randomValue(subjects);
+  const business = randomValue(businesses);
 
-  const descriptorIndex = descriptorValues.indexOf(
-    descriptorValues
-      .filter((val: number) => val < descriptorThreshold)
-      .reverse()[0]
-  );
-
-  const subjectIndex = subjectValues.indexOf(
-    subjectValues.filter((val: number) => val < subjectThreshold).reverse()[0]
-  );
-
-  const businessIndex = businessValues.indexOf(
-    businessValues.filter((val: number) => val < businessThreshold).reverse()[0]
-  );
-
-  return `${descriptors[descriptorIndex]} ${subjects[subjectIndex]} ${businesses[businessIndex]}`;
+  return `${descriptor} ${subject} ${business}`;
 };
