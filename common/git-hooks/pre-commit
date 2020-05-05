@@ -22,6 +22,14 @@ echo --------------------------------------------
 echo Starting Git hook: pre-commit
 echo --------------------------------------------
 
+echo Running Prettier
+
+if [ -f $PRETTIER ]; then
+  $PRETTIER
+else
+  echo "\nError running PRETTIER: $PRETTIER\n"
+fi
+
 echo Running ESLint
 
 if [ -f $ESLINT ]; then
@@ -50,14 +58,6 @@ fi
 # else
 #   echo Error running ESLINT: $ESLINT
 # fi
-
-echo Running Prettier
-
-if [ -f $PRETTIER ]; then
-  $PRETTIER
-else
-  echo "\nError running PRETTIER: $PRETTIER\n"
-fi
 
 echo --------------------------------------------
 echo Finished Git hook: pre-commit
