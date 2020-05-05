@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/DTCurrie/sr5e-tools#readme",
   "husky": {
-    "precommit": "node scripts/precommit.js"
+    "pre-commit": "node scripts/precommit.js"
   }
 }

@@ -1,16 +1,7 @@
 const { relative, resolve } = require('path');
 const { exec } = require('child_process');
 
-const hooks = {
-  'apps/run-generator': [
-    'node node_modules/@vue/cli-service/bin/vue-cli-service.js lint',
-    'node node_modules/prettier/bin-prettier.js --write src',
-  ],
-  'tools/game-mechanics': [
-    'node node_modules/eslint/bin/eslint.js --ext .ts --cache --fix',
-    'node node_modules/prettier/bin-prettier.js --write src',
-  ],
-};
+const hooks = require('../hooks.json')['pre-commit'];
 
 const projects = Object.keys(hooks);
 
